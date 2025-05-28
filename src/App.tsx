@@ -1,8 +1,10 @@
 import { TableHeader, Table, TableHead, TableCell, TableRow, TableBody } from "./components/ui/table"
 import { Button } from "./components/ui/button"
 import { Input } from "./components/ui/input"
+import { Label } from "./components/ui/label"
 import { Search, PlusCircle } from "lucide-react"
-
+import { Dialog, DialogTrigger, DialogClose } from "@radix-ui/react-dialog"
+import { DialogFooter, DialogHeader, DialogContent, DialogTitle, DialogDescription } from "./components/ui/dialog"
 
 export function App() {
   return (
@@ -16,15 +18,47 @@ export function App() {
           <Input name="name" placeholder="Nome do produto" />
 
           <Button type="submit" variant="link" >
-            <Search className="w-4 h-4 mr-2"/>
+            <Search className="w-4 h-4 mr-2" />
             Filtrar resultados
           </Button>
         </form>
 
-        <Button>
-          <PlusCircle className="w-4 h-4 mr-2"/>
-          Novo Produto
-          </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button>
+              <PlusCircle className="w-4 h-4 mr-2" />
+              Novo Produto
+            </Button>
+          </DialogTrigger>
+
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Novo Produto</DialogTitle>
+              <DialogDescription>Criar um novo produto no sistema</DialogDescription>
+            </DialogHeader>
+
+            <form className="space-y-6">
+
+              <div className="grid grid-cols-4 items-center text-right gap-3">
+                <Label htmlFor="name">Produto</Label>
+                <Input className="col-span-3 id=name" />
+              </div>
+
+              <div className="grid grid-cols-4 items-center text-right gap-3">
+                <Label htmlFor="price">Preço</Label>
+                <Input className="col-span-3 id=price" />
+              </div>
+
+              <DialogFooter>
+                <DialogClose>
+                  <Button type="button" variant="outline">Cancelar</Button>
+                </DialogClose>
+
+                <Button type="submit">Salvar</Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <div className="border rounded-lg p-2">
