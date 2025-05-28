@@ -1,7 +1,29 @@
-
+import { TableHeader, Table, TableHead, TableCell, TableRow, TableBody } from "./components/ui/table"
 
 export function App() {
   return (
-    <h1>Hello Word</h1>
+    <div  className="p-6 max-w-4xl mx-auto">
+      <div className="border rounded-lg p-2">
+        <Table>
+          <TableHeader>
+            <TableHead>ID</TableHead>
+            <TableHead>Produto</TableHead>
+            <TableHead>Preço</TableHead>
+          </TableHeader>
+          <TableBody>
+            {Array.from({ length: 10}).map((_, i) => {
+              return (
+                 <TableRow key={i}>
+              <TableCell>45546</TableCell>
+              <TableCell>Produto {i}</TableCell>
+              <TableCell>R$ 192,00</TableCell>
+            </TableRow>
+              )
+            })}
+          </TableBody>
+        </Table>
+
+      </div>
+    </div>
   )
 }
